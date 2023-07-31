@@ -36,8 +36,11 @@ const SpaBookingSystem = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
+        step={15}
+        timeslots={4}
         onSelectEvent={(event) => console.log('Selected event:', event)}
         onSelectSlot={(slotInfo) => console.log('Selected slot:', slotInfo)}
+        style={{ height: 700 }}
       />
     </div>
   );

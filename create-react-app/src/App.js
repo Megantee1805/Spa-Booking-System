@@ -6,7 +6,11 @@ import { useParams } from "react-router-dom";
 import LandingPage from './components/landingpage';
 import MasseurDetails from './components/masseurDetails';
 import SpaScheduler from './components/spaScheduler';
+import { Analytics } from '@vercel/analytics/react';
 
+// app.js (or index.js)
+
+// Rest of your application code
 
 const App = () => {
   return (
@@ -17,6 +21,7 @@ const App = () => {
         <Route path="/masseurs/:id" element={<MasseurDetails />} />
         <Route path="/book/:id" element={<SpaScheduler />} />
       </Routes>
+      <Analytics />
     </div>
   );
 };
