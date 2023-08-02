@@ -17,9 +17,21 @@ const masseurs = [
   // Add more masseurs here
 ];
 
+
+const events = [
+
+
+]; 
+
 const SpaBookingSystem = () => {
   const [events, setEvents] = useState([]);
-
+  const handleSelectSlot = (slotInfo) => {
+    // slotInfo contains information about the selected slot
+    // For example, slotInfo.start and slotInfo.end represent the selected start and end dates
+    console.log('Selected start date:', slotInfo.start);
+    console.log('Selected end date:', slotInfo.end);
+  };
+  
   // Function to handle event changes (booking appointments)
   const handleEventChange = (event) => {
     // Update the events array with the new booking information
@@ -38,8 +50,8 @@ const SpaBookingSystem = () => {
         endAccessor="end"
         step={15}
         timeslots={4}
-        onSelectEvent={(event) => console.log('Selected event:', event)}
-        onSelectSlot={(slotInfo) => console.log('Selected slot:', slotInfo)}
+        selectable={true}
+        onSelectSlot={handleSelectSlot}
         style={{ height: 700 }}
       />
     </div>

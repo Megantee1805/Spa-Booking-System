@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import commerce from '../commerce';
 
 const masseurs = [
   { id: 1, name: 'Masseur 1' },
@@ -36,25 +37,62 @@ const MasseurCard = styled.div`
 `;
 
 const MasseurDetails = ({ match }) => {
-    const { id } = useParams();
-    const masseurId = parseInt(id, 10);
-    const selectedMasseur = masseurs.find((masseur) => masseur.id === masseurId);
-  
-    return (
-      <MainContainer>
-        <Header>Masseur Details</Header>
-        {selectedMasseur ? (
-          <div>
-            <h2>{selectedMasseur.name}</h2>
-            {/* Add more details about the masseur here */}
-          </div>
-        ) : (
-          <h2>Masseur not found.</h2>
-        )}
-        <Link to="/">Back to Home</Link>
-        <Link to={`/book/${id}`}> Book</Link>
-      </MainContainer>
+  const { id } = useParams();
+
+  const [products, setProducts] = useState([]);
+  const handleCheckboxChange = (productId) => {
+    const updatedOptions = products.map((product) =>
+      product.id === productId ? { ...product, checked: !product.checked } : product
     );
+    setProducts(updatedOptions);
   };
 
-  export default MasseurDetails
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const { data } = await commerce.products.list();
+      setProducts(data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
+
+  const masseurId = parseInt(id, 10);
+  const selectedMasseur = masseurs.find((masseur) => masseur.id === masseurId);
+
+  return (
+    <MainContainer>
+      <Header>Masseur Details</Header>
+      {selectedMasseur ? (
+        <div>
+          <h2>{selectedMasseur.name}</h2>
+          <h2>Services Offered</h2>
+          {products.map((product) => (
+            <div key={product.id}>
+              <input
+                type="checkbox"
+                id={product.id}
+                value={product.name}
+                checked={product.checked}
+                onChange={() => handleCheckboxChange(product.id)}
+              />
+              <label htmlFor={product.id}>{product.name}</label>
+            </div>
+          ))}
+          {/* Add more details about the masseur here */}
+        </div>
+      ) : (
+        <h2>Masseur not found.</h2>
+      )}
+      <Link to="/">Back to Home</Link>
+      <br></br>
+      <Link to={`/book/${id}`}> Book</Link>
+    </MainContainer>
+  );
+};
+
+export default MasseurDetails

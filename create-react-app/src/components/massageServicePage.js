@@ -26,7 +26,7 @@ const MassageServicePage = () => {
       <ul>
         {products.map((product) => (
           <li key={product.id}>
-            <Link to={`/massage/${product.permalink}`}>{product.name}</Link>
+            <Link to={`/info/${product.permalink}`}>{product.name}</Link>
           </li>
         ))}
       </ul>
