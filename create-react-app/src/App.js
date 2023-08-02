@@ -7,6 +7,7 @@ import LandingPage from './components/landingpage';
 import MasseurDetails from './components/masseurDetails';
 import SpaScheduler from './components/spaScheduler';
 import { Analytics } from '@vercel/analytics/react';
+import MassageServicePage from './components/massageServicePage';
 
 // app.js (or index.js)
 
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/masseurs/:id" element={<MasseurDetails />} />
         <Route path="/book/:id" element={<SpaScheduler />} />
+        <Route path="/services" element={<MassageServicePage />} />
       </Routes>
       <Analytics />
     </div>

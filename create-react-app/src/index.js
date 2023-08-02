@@ -18,7 +18,7 @@ root.render(
   </React.StrictMode>,
 );
 
-console.log('API Key:', process.env.REACT_APP_COMMERCE_JS_KEY);
+// console.log('API Key:', process.env.REACT_APP_COMMERCE_JS_KEY);
 
 
 reportWebVitals(sendToVercelAnalytics);
