@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'rea
 import styled from '@emotion/styled';
 import { useParams } from "react-router-dom";
 import { MasseurDetails } from './masseurDetails'; 
+import AppNavbar from './navbar';
 
 const masseurs = [
   { id: 1, name: 'Masseur 1' },
@@ -38,6 +39,7 @@ const MasseurCard = styled.div`
 const LandingPage = () => {
     return (
       <MainContainer>
+        <AppNavbar></AppNavbar>
         <Header>Welcome to our Spa</Header>
         <h2>Please pick your masseur:</h2>
         {masseurs.map((masseur) => (

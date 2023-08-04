@@ -67,7 +67,6 @@ const MasseurDetails = ({ match }) => {
 
   return (
     <MainContainer>
-      <Navbar></Navbar>
       <Header>Masseur Details</Header>
       {selectedMasseur ? (
         <div>

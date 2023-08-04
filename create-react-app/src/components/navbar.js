@@ -1,39 +1,22 @@
 import React from 'react';
-import { css } from '@emotion/react';
+import { Navbar, Nav } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Navbar = () => {
+const AppNavbar = () => {
   return (
-    <nav css={navStyles}>
-      <ul css={navListStyles}>
-        <li css={navItemStyles}>Home</li>
-        <li css={navItemStyles}>About</li>
-        <li css={navItemStyles}>Services</li>
-        <li css={navItemStyles}>Contact</li>
-      </ul>
-    </nav>
+    <Navbar bg="light" variant="light" expand="lg">
+      <Navbar.Brand href="#home">React Bootstrap Navbar</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="#about">About</Nav.Link>
+          <Nav.Link href="#services">Services</Nav.Link>
+          <Nav.Link href="#contact">Contact</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
-const navStyles = css`
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-`;
-
-const navListStyles = css`
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-`;
-
-const navItemStyles = css`
-  padding: 10px 20px;
-  cursor: pointer;
-  &:hover {
-    background-color: #555;
-  }
-`;
-
-export default Navbar;
+export default AppNavbar;
