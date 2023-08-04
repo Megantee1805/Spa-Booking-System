@@ -1,0 +1,46 @@
+[debug] [2023-08-04T04:50:05.655Z] ----------------------------------------------------------------------
+[debug] [2023-08-04T04:50:05.657Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\megan\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:addfirebase spa-booking-app-47610
+[debug] [2023-08-04T04:50:05.657Z] CLI Version:   12.4.7
+[debug] [2023-08-04T04:50:05.657Z] Platform:      win32
+[debug] [2023-08-04T04:50:05.658Z] Node Version:  v18.16.1
+[debug] [2023-08-04T04:50:05.658Z] Time:          Fri Aug 04 2023 12:50:05 GMT+0800 (Singapore Standard Time)
+[debug] [2023-08-04T04:50:05.658Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-08-04T04:50:05.705Z] Object ".firestore" in "firebase.json" has unknown property: {"additionalProperty":"cors"}
+[debug] [2023-08-04T04:50:05.705Z] Field ".firestore" in "firebase.json" is possibly invalid: should be array
+[debug] [2023-08-04T04:50:05.706Z] Field ".firestore" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-08-04T04:50:05.708Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-08-04T04:50:05.708Z] > authorizing via signed-in user (victoriquecrawford@gmail.com)
+[debug] [2023-08-04T04:50:05.712Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/spa-booking-app-47610:addFirebase [none]
+[debug] [2023-08-04T04:50:07.128Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/spa-booking-app-47610:addFirebase 409
+[debug] [2023-08-04T04:50:07.128Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/spa-booking-app-47610:addFirebase {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2023-08-04T04:50:07.129Z] HTTP Error: 409, Requested entity already exists
+[debug] [2023-08-04T04:50:07.167Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at responseToError (C:\Users\megan\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\megan\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:285:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to add Firebase to Google Cloud Platform project. See firebase-debug.log for more info.
+[debug] [2023-08-04T04:50:14.857Z] ----------------------------------------------------------------------
+[debug] [2023-08-04T04:50:14.859Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\megan\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:addfirebase spa-booking-app-47610
+[debug] [2023-08-04T04:50:14.859Z] CLI Version:   12.4.7
+[debug] [2023-08-04T04:50:14.859Z] Platform:      win32
+[debug] [2023-08-04T04:50:14.859Z] Node Version:  v18.16.1
+[debug] [2023-08-04T04:50:14.860Z] Time:          Fri Aug 04 2023 12:50:14 GMT+0800 (Singapore Standard Time)
+[debug] [2023-08-04T04:50:14.860Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-08-04T04:50:14.909Z] Object ".firestore" in "firebase.json" has unknown property: {"additionalProperty":"cors"}
+[debug] [2023-08-04T04:50:14.910Z] Field ".firestore" in "firebase.json" is possibly invalid: should be array
+[debug] [2023-08-04T04:50:14.910Z] Field ".firestore" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-08-04T04:50:14.913Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-08-04T04:50:14.913Z] > authorizing via signed-in user (victoriquecrawford@gmail.com)
+[debug] [2023-08-04T04:50:14.916Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/spa-booking-app-47610:addFirebase [none]
+[debug] [2023-08-04T04:50:16.135Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/spa-booking-app-47610:addFirebase 409
+[debug] [2023-08-04T04:50:16.136Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/spa-booking-app-47610:addFirebase {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2023-08-04T04:50:16.137Z] HTTP Error: 409, Requested entity already exists
+[debug] [2023-08-04T04:50:16.169Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at responseToError (C:\Users\megan\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\megan\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:285:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to add Firebase to Google Cloud Platform project. See firebase-debug.log for more info.

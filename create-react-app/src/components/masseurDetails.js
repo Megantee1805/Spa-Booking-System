@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter, useParams 
 import styled from '@emotion/styled';
 import React, { useState, useEffect } from 'react';
 import commerce from '../commerce';
+import Navbar from './navbar';
 
 const masseurs = [
   { id: 1, name: 'Masseur 1' },
@@ -66,6 +67,7 @@ const MasseurDetails = ({ match }) => {
 
   return (
     <MainContainer>
+      <Navbar></Navbar>
       <Header>Masseur Details</Header>
       {selectedMasseur ? (
         <div>

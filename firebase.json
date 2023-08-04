@@ -1,0 +1,14 @@
+{
+    "firestore": {
+      "rules": "firestore.rules",
+      "indexes": "firestore.indexes.json",
+      "cors": [
+        {
+          "origin": ["http://localhost:3000/", "https://spa-booking-system.vercel.app/"],
+          "method": ["GET", "POST", "PUT", "DELETE"],
+          "maxAgeSeconds": 3600
+        }
+      ]
+    }
+  }
+  
