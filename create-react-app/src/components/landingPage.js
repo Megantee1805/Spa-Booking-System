@@ -24,7 +24,7 @@ const features = [
   {
     title: 'Integrated Commerce',
     description:
-      'Bundle retail products, memberships, and packages with every booking to boost revenue effortlessly.',
+      'Bundle retail products, memberships, and packages with Stripe and PayPal-ready flows for effortless checkouts.',
     icon: '🛍️',
   },
 ];

@@ -12,11 +12,14 @@ const PaymentSetup = () => {
   const [formState, setFormState] = useState({
     guestName: '',
     email: '',
-    methodId: paymentMethods[0]?.id || 'card',
+    methodId: paymentMethods[0]?.id || 'stripe-card',
     cardNumber: '',
     expiryMonth: '',
     expiryYear: '',
+    cvc: '',
+    paypalEmail: '',
     membershipPlan: membershipPlans[0]?.id || '',
+    saveAsDefault: true,
   });
 
   const selectedMethod = useMemo(
@@ -25,8 +28,11 @@ const PaymentSetup = () => {
   );
 
   const handleFieldChange = (event) => {
-    const { name, value } = event.target;
-    setFormState((previous) => ({ ...previous, [name]: value }));
+    const { name, value, type, checked } = event.target;
+    setFormState((previous) => ({
+      ...previous,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
   };
 
   const handleSubmit = async (event) => {
@@ -50,23 +56,31 @@ const PaymentSetup = () => {
         guestName: formState.guestName,
         email: formState.email,
         methodId: formState.methodId,
-        cardLast4: formState.cardNumber.slice(-4),
+        cardNumber: formState.cardNumber,
         expiryMonth: formState.expiryMonth,
         expiryYear: formState.expiryYear,
+        cvc: formState.cvc,
+        paypalEmail: formState.paypalEmail,
         membershipPlan: formState.membershipPlan,
+        saveAsDefault: formState.saveAsDefault,
       });
 
       setStatusMessage(
-        `Payment method saved for ${result.guestName}. Status: ${result.status.replace('-', ' ')}.`
+        `Payment method saved for ${result.guestName} via ${result.provider}. Status: ${result.status.replace('-', ' ')}${
+          result.nextAction ? ` · Next step: ${result.nextAction}` : ''
+        }`
       );
       setFormState({
         guestName: '',
         email: '',
-        methodId: paymentMethods[0]?.id || 'card',
+        methodId: paymentMethods[0]?.id || 'stripe-card',
         cardNumber: '',
         expiryMonth: '',
         expiryYear: '',
+        cvc: '',
+        paypalEmail: '',
         membershipPlan: membershipPlans[0]?.id || '',
+        saveAsDefault: true,
       });
     } catch (error) {
       console.error('Payment profile creation failed', error);
@@ -84,8 +98,8 @@ const PaymentSetup = () => {
           <span className="eyebrow">Billing studio</span>
           <h1 className="section-title">Initiate secure guest payments</h1>
           <p>
-            Capture and tokenize payment details with built-in compliance. Pair a method to a
-            membership or spa package to streamline renewals.
+            Capture and tokenize payment details with built-in compliance. Choose between Stripe or
+            PayPal to meet every guest preference and link their method to the perfect membership.
           </p>
         </header>
 
@@ -93,8 +107,8 @@ const PaymentSetup = () => {
           <section className="card-surface payment-card">
             <h2 style={{ marginTop: 0 }}>Choose payment flow</h2>
             <p className="helper-text">
-              Select how the guest prefers to settle invoices. Wallet and corporate billing options can
-              be activated once agreements are on file.
+              Select how the guest prefers to settle invoices. Enable Stripe for saved cards or Stripe
+              Link for lightning-fast checkout, or use PayPal for a trusted redirect experience.
             </p>
             <div className="service-options">
               {paymentMethods.map((method) => (
@@ -108,13 +122,24 @@ const PaymentSetup = () => {
                   />
                   <div>
                     <strong>{method.label}</strong>
-                    <p className="helper-text" style={{ marginTop: '0.35rem' }}>
-                      {method.processing}
-                    </p>
+                    <p className="helper-text" style={{ marginTop: '0.35rem' }}>{method.processing}</p>
                   </div>
                 </label>
               ))}
             </div>
+            {selectedMethod && (
+              <div className="method-summary">
+                <span className="integration-pill">{selectedMethod.provider} integration</span>
+                <p className="helper-text" style={{ marginBottom: '0.5rem' }}>
+                  {selectedMethod.processing}
+                </p>
+                <ul className="method-feature-list">
+                  {selectedMethod.features?.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </section>
 
           <section className="card-surface payment-card">
@@ -146,7 +171,7 @@ const PaymentSetup = () => {
                 </div>
               </div>
 
-              {formState.methodId === 'card' && (
+              {selectedMethod?.requiresCard && (
                 <>
                   <div>
                     <label htmlFor="cardNumber">Card number</label>
@@ -184,7 +209,41 @@ const PaymentSetup = () => {
                       />
                     </div>
                   </div>
+                  <div>
+                    <label htmlFor="cvc">CVC</label>
+                    <input
+                      id="cvc"
+                      name="cvc"
+                      placeholder="CVC"
+                      value={formState.cvc}
+                      onChange={handleFieldChange}
+                      maxLength={4}
+                    />
+                  </div>
                 </>
+              )}
+
+              {selectedMethod?.requiresPaypal && (
+                <div>
+                  <label htmlFor="paypalEmail">PayPal email</label>
+                  <input
+                    id="paypalEmail"
+                    name="paypalEmail"
+                    type="email"
+                    value={formState.paypalEmail}
+                    onChange={handleFieldChange}
+                    placeholder="guest@paypal.com"
+                  />
+                  <p className="helper-text" style={{ marginTop: '0.35rem' }}>
+                    We will redirect the guest to PayPal to approve the billing agreement.
+                  </p>
+                </div>
+              )}
+
+              {selectedMethod?.requiresEmailOnly && (
+                <p className="helper-text" style={{ marginTop: '-0.25rem' }}>
+                  Stripe Link uses the guest email to send a secure checkout link for future visits.
+                </p>
               )}
 
               <div>
@@ -206,12 +265,57 @@ const PaymentSetup = () => {
                 </p>
               </div>
 
+              <div>
+                <label htmlFor="saveAsDefault">Auto-renew membership</label>
+                <div className="toggle-field">
+                  <input
+                    type="checkbox"
+                    id="saveAsDefault"
+                    name="saveAsDefault"
+                    checked={formState.saveAsDefault}
+                    onChange={handleFieldChange}
+                  />
+                  <span>Charge the saved payment method each billing cycle</span>
+                </div>
+              </div>
+
               <button className="button button-primary" type="submit" disabled={isSubmitting}>
                 {isSubmitting ? 'Saving…' : 'Store payment method'}
               </button>
             </form>
             {statusMessage && <div className="status-banner">{statusMessage}</div>}
           </section>
+
+          <aside className="card-surface payment-card payment-side-panel">
+            <h2 style={{ marginTop: 0 }}>Activation checklist</h2>
+            <ol className="workflow-steps">
+              <li>
+                <strong>Collect guest consent</strong>
+                <p className="helper-text">Review terms for storing payment details and renewals.</p>
+              </li>
+              <li>
+                <strong>Tokenize with {selectedMethod?.provider || 'Stripe/PayPal'}</strong>
+                <p className="helper-text">Use the secure form on the left to capture credentials.</p>
+              </li>
+              <li>
+                <strong>Attach to membership</strong>
+                <p className="helper-text">Ensure the selected plan matches their visit cadence.</p>
+              </li>
+              <li>
+                <strong>Send confirmation</strong>
+                <p className="helper-text">Deliver a branded receipt with next steps and perks.</p>
+              </li>
+            </ol>
+            <div className="divider" />
+            <div className="insight-metric">
+              <span className="insight-metric__value">92%</span>
+              <span className="insight-metric__label">of members stay active with saved payments</span>
+            </div>
+            <p className="helper-text" style={{ marginTop: '0.75rem' }}>
+              Need to support corporate invoicing or gift cards? Extend the catalog from settings at
+              any time.
+            </p>
+          </aside>
         </div>
       </main>
     </div>

@@ -4,6 +4,45 @@ import { createMembershipEnrollment, listMembershipPlans } from '../services/mem
 
 const plans = listMembershipPlans();
 
+const loyaltyHighlights = [
+  {
+    title: 'Stripe autopay ready',
+    description:
+      'Pair memberships with saved cards on Stripe to renew visits automatically without chasing invoices.',
+    icon: '⚡',
+  },
+  {
+    title: 'PayPal for global guests',
+    description:
+      'Offer PayPal billing agreements so travelers can keep perks active with familiar, secure payments.',
+    icon: '🌍',
+  },
+  {
+    title: 'Personalized check-ins',
+    description:
+      'Automated reminders and concierge notes welcome members back with their preferred rituals every time.',
+    icon: '🤗',
+  },
+];
+
+const membershipFaq = [
+  {
+    question: 'Can guests pause their plan?',
+    answer:
+      'Yes. Pause or resume any membership with a single click—billing automatically adjusts on the next cycle.',
+  },
+  {
+    question: 'How do upgrades work?',
+    answer:
+      'Simply enroll the guest in a new tier. Their benefits switch instantly and billing prorates at the next renewal.',
+  },
+  {
+    question: 'Do we support corporate gifting?',
+    answer:
+      'Absolutely. Create shared balances for companies and let employees book treatments within their allowance.',
+  },
+];
+
 const MembershipPage = () => {
   const defaultPlan = useMemo(() => plans.find((plan) => plan.featured) || plans[0], []);
   const [selectedPlanId, setSelectedPlanId] = useState(defaultPlan.id);
@@ -116,6 +155,23 @@ const MembershipPage = () => {
           })}
         </section>
 
+        <section className="card-surface membership-insights">
+          <h2 style={{ marginTop: 0 }}>Why members love TranquilFlow</h2>
+          <div className="loyalty-grid">
+            {loyaltyHighlights.map((highlight) => (
+              <article key={highlight.title} className="loyalty-card">
+                <span className="loyalty-icon" aria-hidden="true">
+                  {highlight.icon}
+                </span>
+                <div>
+                  <h3>{highlight.title}</h3>
+                  <p>{highlight.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="card-surface" style={{ marginTop: '3rem' }}>
           <h2 style={{ marginTop: 0 }}>Activate a member</h2>
           <p className="helper-text">
@@ -186,6 +242,21 @@ const MembershipPage = () => {
             </button>
           </form>
           {statusMessage && <div className="status-banner" style={{ marginTop: '1.75rem' }}>{statusMessage}</div>}
+        </section>
+
+        <section className="faq-section">
+          <h2 className="section-title">Membership FAQs</h2>
+          <p className="section-subtitle">
+            Set expectations with confident, concierge-level answers to the questions guests ask most.
+          </p>
+          <div className="faq-grid">
+            {membershipFaq.map((item) => (
+              <article key={item.question} className="faq-card">
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+              </article>
+            ))}
+          </div>
         </section>
       </main>
     </div>
