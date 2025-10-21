@@ -1,54 +1,51 @@
-import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'react-router-dom';
-import styled from '@emotion/styled';
-import { useParams } from "react-router-dom";
-import { MasseurDetails } from './masseurDetails'; 
+import React from 'react';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import AppNavbar from './navbar';
 
-const masseurs = [
-  { id: 1, name: 'Masseur 1' },
-  { id: 2, name: 'Masseur 2' },
-  { id: 3, name: 'Masseur 3' },
-];
-
-const MainContainer = styled.div`
-  text-align: center;
-  padding: 40px;
-`;
-
-const Header = styled.h1`
-  font-size: 36px;
-  margin-bottom: 20px;
-`;
-
-const MasseurCard = styled.div`
-  background-color: #f2f2f2;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 10px;
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-
-  &:hover {
-    background-color: #e0e0e0;
-  }
-`;
-
 const LandingPage = () => {
-    return (
-      <MainContainer>
-        <AppNavbar></AppNavbar>
-        <Header>Welcome to our Spa</Header>
-        <h2>Please pick your masseur:</h2>
-        {masseurs.map((masseur) => (
-          <Link key={masseur.id} to={`/masseurs/${masseur.id}`}>
-            <MasseurCard>{masseur.name}</MasseurCard>
-          </Link>
-        ))}
-      </MainContainer>
-    );
-  };
-  
-  export default LandingPage
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Online Spa CRM</h1>
+        <p>Your One-Stop Solution for Managing Your Spa Business</p>
+      </header>
+      <section className="features">
+        <Container>
+          <Row>
+            <Col md={3} className="feature">
+              <h2>Appointment Management</h2>
+              <p>Effortlessly schedule and manage appointments for your clients.</p>
+            </Col>
+            <Col md={3} className="feature">
+              <h2>Client Profiles</h2>
+              <p>Keep detailed records of your clients, preferences, and history.</p>
+            </Col>
+            <Col md={3} className="feature">
+              <h2>Staff Management</h2>
+              <p>Organize your spa staff, schedules, and assignments.</p>
+            </Col>
+            <Col md={3} className="feature">
+              <h2>Staff Progression</h2>
+              <p>Help your staff grow, get better rates, provide personalized care.</p>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      <section className="cta">
+        <Container>
+          <h2>Ready to Transform Your Spa Business?</h2>
+          <p>Join us and experience the power of our online spa CRM.</p>
+          <Button variant="primary" size="lg">Get Started</Button>
+        </Container>
+      </section>
+      <footer className="footer">
+        <Container>
+          <p>&copy; 2023 Online Spa CRM. All rights reserved.</p>
+        </Container>
+      </footer>
+    </div>
+  );
+};
+
+export default LandingPage;
