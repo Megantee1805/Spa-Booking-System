@@ -6,6 +6,7 @@ import AppNavbar from './navbar';
 const LandingPage = () => {
   return (
     <div className="App">
+      <AppNavbar />
       <header className="App-header">
         <h1>Online Spa CRM</h1>
         <p>Your One-Stop Solution for Managing Your Spa Business</p>
