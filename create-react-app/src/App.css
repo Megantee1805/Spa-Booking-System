@@ -521,7 +521,9 @@ main {
 .form-card textarea,
 .service-option input,
 .scheduler-form input,
-.scheduler-form textarea {
+.scheduler-form textarea,
+.form-card select,
+.scheduler-form select {
   width: 100%;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -529,6 +531,16 @@ main {
   color: var(--color-text);
   padding: 0.85rem 1rem;
   font-size: 1rem;
+}
+
+.form-card select,
+.scheduler-form select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, 0.5) 50%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.5) 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1.1rem), calc(100% - 15px) calc(1.1rem);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
 }
 
 .form-card textarea,
@@ -559,6 +571,13 @@ main {
   gap: 1rem;
 }
 
+.helper-text {
+  margin-top: 0.6rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 .status-banner {
   margin-top: 1.5rem;
   padding: 1rem 1.25rem;
@@ -582,6 +601,65 @@ main {
 
 .rbc-selected {
   box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.45);
+}
+
+.insights-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.insight-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.insight-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.insight-list__item p {
+  margin: 0.25rem 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.insight-list__empty {
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 1rem 0;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-sm);
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0.25rem 0 0.5rem;
+}
+
+.insight-metric {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.insight-metric__value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.insight-metric__label {
+  color: var(--color-text-muted);
 }
 
 /* Auth pages */
@@ -677,5 +755,99 @@ main {
 
   .auth-card {
     padding: 2rem;
+  }
+}
+
+/* Memberships */
+.membership-hero {
+  display: grid;
+  gap: 1.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.membership-grid {
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.membership-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2.1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.membership-card__header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.membership-card__price {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.membership-card .tag {
+  align-self: flex-start;
+}
+
+.benefit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.benefit-list li::before {
+  content: '✔';
+  margin-right: 0.5rem;
+  color: #c9b7ff;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.payment-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.payment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stacked-form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.stacked-form .form-row {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 700px) {
+  .stacked-form .form-row.two-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
