@@ -1,76 +1,39 @@
 import React from 'react';
-import { css } from '@emotion/react';
+import { Link } from 'react-router-dom';
+import AppNavbar from './navbar';
 
 const Signup = () => {
   return (
-    <div css={containerStyles}>
-      <h2 css={headingStyles}>Signup</h2>
-      <form css={formStyles}>
-        <div css={inputContainerStyles}>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" placeholder="Enter your name" />
+    <div className="page-shell">
+      <AppNavbar />
+      <main className="auth-page">
+        <div className="auth-card">
+          <h2>Create your workspace</h2>
+          <p>Set up a collaborative hub for your spa team in just a minute.</p>
+          <form>
+            <div>
+              <label htmlFor="name">Name</label>
+              <input type="text" id="name" placeholder="Full name" />
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" placeholder="you@tranquilflow.com" />
+            </div>
+            <div>
+              <label htmlFor="password">Password</label>
+              <input type="password" id="password" placeholder="Create a secure password" />
+            </div>
+            <button type="submit" className="button button-primary">
+              Sign up
+            </button>
+          </form>
+          <div className="auth-meta">
+            Already have access? <Link to="/login">Log in</Link>
+          </div>
         </div>
-        <div css={inputContainerStyles}>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" placeholder="Enter your email" />
-        </div>
-        <div css={inputContainerStyles}>
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" placeholder="Enter your password" />
-        </div>
-        <button type="submit" css={submitButtonStyles}>Signup</button>
-      </form>
+      </main>
     </div>
   );
 };
-
-const containerStyles = css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-`;
-
-const headingStyles = css`
-  font-size: 24px;
-  margin-bottom: 20px;
-`;
-
-const formStyles = css`
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-`;
-
-const inputContainerStyles = css`
-  margin-bottom: 10px;
-  label {
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  input {
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-  }
-`;
-
-const submitButtonStyles = css`
-  margin-top: 10px;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
 
 export default Signup;

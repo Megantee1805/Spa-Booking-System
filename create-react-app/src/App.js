@@ -11,8 +11,7 @@ import MasseurList from './components/masseurList';
 
 const App = () => {
   return (
-    <div className='App'>
-
+    <div className="app-root">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/masseurs/:id" element={<MasseurDetails />} />
