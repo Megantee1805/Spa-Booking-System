@@ -8,6 +8,8 @@ import MassageServicePage from './components/massageServicePage';
 import Login from './components/loginPage';
 import Signup from './components/signUp';
 import MasseurList from './components/masseurList';
+import MembershipPage from './components/membershipPage';
+import PaymentSetup from './components/paymentSetup';
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/masseurs" element={<MasseurList />} />
+        <Route path="/memberships" element={<MembershipPage />} />
+        <Route path="/billing" element={<PaymentSetup />} />
       </Routes>
       <Analytics />
     </div>

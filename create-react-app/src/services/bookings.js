@@ -55,6 +55,9 @@ export const fetchBookingsByMasseur = async (masseurId) => {
       start: data.start?.toDate?.() ?? new Date(data.start),
       end: data.end?.toDate?.() ?? new Date(data.end),
       notes: data.notes || '',
+      serviceName: data.serviceName || '',
+      durationMinutes: Number(data.durationMinutes) || 0,
+      price: Number(data.price) || 0,
     };
   });
 };
@@ -66,6 +69,9 @@ export const createBooking = async ({
   start,
   end,
   notes = '',
+  serviceName = '',
+  durationMinutes = 0,
+  price = 0,
 }) => {
   if (!masseurId) {
     throw new Error('A masseur must be selected before creating a booking.');
@@ -88,6 +94,9 @@ export const createBooking = async ({
     customerName: sanitizeString(customerName),
     customerEmail: safeEmail,
     notes: sanitizeString(notes),
+    serviceName: sanitizeString(serviceName),
+    durationMinutes: Number(durationMinutes) || 0,
+    price: Number(price) || 0,
     start: Timestamp.fromDate(new Date(start)),
     end: Timestamp.fromDate(new Date(end)),
     createdAt: Timestamp.now(),

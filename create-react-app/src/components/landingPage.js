@@ -24,7 +24,7 @@ const features = [
   {
     title: 'Integrated Commerce',
     description:
-      'Bundle retail products, memberships, and packages with every booking to boost revenue effortlessly.',
+      'Bundle retail products, memberships, and packages with Stripe and PayPal-ready flows for effortless checkouts.',
     icon: '🛍️',
   },
 ];
@@ -82,6 +82,12 @@ const LandingPage = () => {
                 </Link>
                 <Link to="/services" className="button button-secondary">
                   Explore treatments
+                </Link>
+                <Link to="/memberships" className="button button-ghost">
+                  Membership programs
+                </Link>
+                <Link to="/billing" className="button button-ghost">
+                  Billing & payments
                 </Link>
               </div>
               <div className="metrics-row">
