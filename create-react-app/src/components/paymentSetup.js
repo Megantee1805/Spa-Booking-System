@@ -43,15 +43,8 @@ const PaymentSetup = () => {
       return;
     }
 
-    if (selectedMethod?.requiresCard) {
-      if (!formState.cardNumber || !formState.expiryMonth || !formState.expiryYear || !formState.cvc) {
-        setStatusMessage('Stripe card details are required to tokenize the payment method.');
-        return;
-      }
-    }
-
-    if (selectedMethod?.requiresPaypal && !formState.paypalEmail) {
-      setStatusMessage('Add the guest PayPal email to initiate the agreement.');
+    if (formState.methodId === 'card' && (!formState.cardNumber || !formState.expiryMonth || !formState.expiryYear)) {
+      setStatusMessage('Card details are required to tokenize the payment method.');
       return;
     }
 

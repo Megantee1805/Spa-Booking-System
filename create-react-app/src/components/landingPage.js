@@ -86,9 +86,6 @@ const LandingPage = () => {
                 <Link to="/memberships" className="button button-ghost">
                   Membership programs
                 </Link>
-                <Link to="/billing" className="button button-ghost">
-                  Billing & payments
-                </Link>
               </div>
               <div className="metrics-row">
                 <div className="metric-card">
