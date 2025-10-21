@@ -1,7 +1,5 @@
-import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { useParams } from "react-router-dom";
-import { MasseurDetails } from './masseurDetails'; 
 import AppNavbar from './navbar';
 
 const masseurs = [
@@ -37,18 +35,18 @@ const MasseurCard = styled.div`
 `;
 
 const LandingPage = () => {
-    return (
-      <MainContainer>
-        <AppNavbar></AppNavbar>
-        <Header>Welcome to our Spa</Header>
-        <h2>Please pick your masseur:</h2>
-        {masseurs.map((masseur) => (
-          <Link key={masseur.id} to={`/masseurs/${masseur.id}`}>
-            <MasseurCard>{masseur.name}</MasseurCard>
-          </Link>
-        ))}
-      </MainContainer>
-    );
-  };
-  
-  export default LandingPage
+  return (
+    <MainContainer>
+      <AppNavbar />
+      <Header>Welcome to our Spa</Header>
+      <h2>Please pick your masseur:</h2>
+      {masseurs.map((masseur) => (
+        <Link key={masseur.id} to={`/masseurs/${masseur.id}`}>
+          <MasseurCard>{masseur.name}</MasseurCard>
+        </Link>
+      ))}
+    </MainContainer>
+  );
+};
+
+export default LandingPage;
