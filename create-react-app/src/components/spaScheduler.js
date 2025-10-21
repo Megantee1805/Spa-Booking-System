@@ -5,42 +5,22 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment);
 
-const masseurs = [
-  {
-    id: 1,
-    name: 'Masseur 1',
-  },
-  {
-    id: 2,
-    name: 'Masseur 2',
-  },
-  // Add more masseurs here
-];
-
-
-const events = [
-
-
-]; 
-
 const SpaBookingSystem = () => {
   const [events, setEvents] = useState([]);
+
   const handleSelectSlot = (slotInfo) => {
-    // slotInfo contains information about the selected slot
-    // For example, slotInfo.start and slotInfo.end represent the selected start and end dates
-    console.log('Selected start date:', slotInfo.start);
-    console.log('Selected end date:', slotInfo.end);
+    setEvents((currentEvents) => [
+      ...currentEvents,
+      {
+        id: currentEvents.length + 1,
+        title: 'New Booking',
+        start: slotInfo.start,
+        end: slotInfo.end,
+        allDay: slotInfo.slots?.length === 1,
+      },
+    ]);
   };
   
-  // Function to handle event changes (booking appointments)
-  const handleEventChange = (event) => {
-    // Update the events array with the new booking information
-    const updatedEvents = events.map((ev) =>
-      ev.id === event.id ? { ...ev, ...event } : ev
-    );
-    setEvents(updatedEvents);
-  };
-
   return (
     <div style={{ padding: '20px' }}>
       <Calendar
@@ -59,3 +39,4 @@ const SpaBookingSystem = () => {
 };
 
 export default SpaBookingSystem;
+

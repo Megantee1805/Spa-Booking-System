@@ -1,8 +1,7 @@
-import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
 import React, { useState, useEffect } from 'react';
 import commerce from '../commerce';
-import Navbar from './navbar';
 
 const masseurs = [
   { id: 1, name: 'Masseur 1' },
@@ -21,23 +20,7 @@ const Header = styled.h1`
   margin-bottom: 20px;
 `;
 
-const MasseurCard = styled.div`
-  background-color: #f2f2f2;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 10px;
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-
-  &:hover {
-    background-color: #e0e0e0;
-  }
-`;
-
-const MasseurDetails = ({ match }) => {
+const MasseurDetails = () => {
   const { id } = useParams();
 
   const [products, setProducts] = useState([]);
@@ -78,7 +61,7 @@ const MasseurDetails = ({ match }) => {
                 type="checkbox"
                 id={product.id}
                 value={product.name}
-                checked={product.checked}
+                checked={Boolean(product.checked)}
                 onChange={() => handleCheckboxChange(product.id)}
               />
               <label htmlFor={product.id}>{product.name}</label>
@@ -96,4 +79,4 @@ const MasseurDetails = ({ match }) => {
   );
 };
 
-export default MasseurDetails
+export default MasseurDetails;
