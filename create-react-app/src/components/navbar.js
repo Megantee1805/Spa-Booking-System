@@ -22,6 +22,12 @@ const AppNavbar = () => {
             <Nav.Link as={NavLink} to="/services">
               Services
             </Nav.Link>
+            <Nav.Link as={NavLink} to="/memberships">
+              Memberships
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/billing">
+              Billing
+            </Nav.Link>
             <Nav.Link href="#contact">Contact</Nav.Link>
           </Nav>
           <div className="nav-actions">
