@@ -738,6 +738,20 @@ main {
   }
 }
 
+@media (min-width: 720px) {
+  .payment-intro {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+@media (min-width: 1080px) {
+  .payment-system-grid {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
 @media (min-width: 1024px) {
   .scheduler-layout {
     grid-template-columns: 2fr 1fr;
@@ -886,34 +900,184 @@ main {
   letter-spacing: 0.1em;
 }
 
-.payment-grid {
+.payment-intro {
   display: grid;
-  gap: 1.75rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
   align-items: start;
 }
 
-.payment-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  position: relative;
+.payment-intro__body {
+  display: grid;
+  gap: 0.75rem;
 }
 
-.payment-side-panel {
+.payment-intro__metrics {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.metric-chip {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.metric-chip strong {
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+.metric-chip span {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.payment-system-grid {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: 2.5rem;
+}
+
+.payment-primary-column,
+.payment-secondary-column {
+  display: grid;
+  gap: 1.75rem;
+  align-content: start;
+}
+
+.payment-flow-card,
+.payment-form-card,
+.service-directory,
+.operations-card {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.operations-card {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: none;
-  gap: 1.5rem;
 }
 
-.method-summary {
-  margin-top: 1rem;
-  padding: 1.25rem;
+.payment-playbook-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.payment-playbook {
+  padding: 1.1rem 1.3rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.payment-playbook__headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.payment-playbook__metric {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-muted);
+}
+
+.payment-playbook__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(99, 91, 255, 0.16);
+  color: #e7e3ff;
+  font-size: 0.85rem;
+}
+
+.payment-method-summary {
+  margin-top: 1.25rem;
+  padding: 1.3rem;
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.08);
   display: grid;
   gap: 0.75rem;
+}
+
+.service-directory__list {
+  display: grid;
+  gap: 1rem;
+}
+
+.service-directory__item {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.2rem 1.35rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.service-directory__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.service-directory__header h3 {
+  margin: 0;
+}
+
+.service-directory__header span {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.service-directory__item p {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.service-directory__team {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.team-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.payment-form-card .status-banner {
+  margin-top: 1.25rem;
 }
 
 .integration-pill {
