@@ -225,19 +225,29 @@ const PaymentSetup = () => {
 
               <div className="divider" />
 
-              <h3 style={{ marginBottom: '0.75rem' }}>Select processor</h3>
-              <div className="service-options">
+              <h3 style={{ marginBottom: '0.75rem' }}>Select payment method</h3>
+              <div className="method-grid" role="radiogroup" aria-label="Payment methods">
                 {paymentMethods.map((method) => (
-                  <label key={method.id} className="service-option">
+                  <label
+                    key={method.id}
+                    className={`method-card${formState.methodId === method.id ? ' is-selected' : ''}`}
+                  >
                     <input
                       type="radio"
+                      className="visually-hidden"
                       name="methodId"
                       value={method.id}
                       checked={formState.methodId === method.id}
                       onChange={handleFieldChange}
                     />
-                    <div>
-                      <strong>{method.label}</strong>
+                    <div className="method-card__body">
+                      <div className="method-card__header">
+                        <span className="method-icon" aria-hidden>
+                          {method.id.includes('paypal') ? '🅿️' : method.id.includes('link') ? '🔗' : '💳'}
+                        </span>
+                        <strong>{method.label?.replaceAll('A�', '·')}</strong>
+                        <span className="provider-pill">{method.provider}</span>
+                      </div>
                       <p className="helper-text" style={{ marginTop: '0.35rem' }}>{method.processing}</p>
                     </div>
                   </label>
